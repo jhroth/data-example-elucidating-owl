@@ -16,7 +16,7 @@ rm(list.build.rules.split.regression, list.evaluate.rules.split.regression)
 ### evalute locked-in model on test set
 set.seed(123)
 split.regression.test.BREAST.logistic <- EvaluateRule(data=test.data,
-                                                                build.rule.object=list.build.rules.split.regression.BREAST[["propensity_logistic.regression_rule_glm.regression"]],
+                                                                BuildRule.object=list.build.rules.split.regression.BREAST[["propensity_logistic.regression_rule_glm.regression"]],
                                                                 study.design="observational",
                                                                 additional.weights=test.data$IPW.CC,
                                                                 name.outcome="no_BREAST_after_10_yr",
@@ -34,7 +34,7 @@ save(split.regression.test.BREAST.logistic, file=paste0("Results/split_regressio
 
 set.seed(123)
 split.regression.test.BREAST.lasso <- EvaluateRule(data=test.data,
-                                                                build.rule.object=list.build.rules.split.regression.BREAST[["propensity_ridge_rule_lasso"]],
+                                                                BuildRule.object=list.build.rules.split.regression.BREAST[["propensity_ridge_rule_lasso"]],
                                                                 study.design="observational",
                                                                 additional.weights=test.data$IPW.CC,
                                                                 name.outcome="no_BREAST_after_10_yr",
@@ -54,7 +54,7 @@ save(split.regression.test.BREAST.lasso, file=paste0("Results/split_regression_o
 B.treat.noone <- rep(0, nrow(test.data))
 set.seed(123)
 evaluate.treat.noone.test.BREAST <- EvaluateRule(data=test.data,
-                                                  build.rule.object=NULL,
+                                                  BuildRule.object=NULL,
                                                   B=B.treat.noone,
                                                   study.design="observational",
                                                   additional.weights=test.data$IPW.CC,
@@ -81,7 +81,7 @@ rm(list.build.rules.OWL.framework, list.evaluate.rules.OWL.framework)
 ### evalute locked-in model on test set
 set.seed(123)
 OWL.framework.test.CHD.logistic <- EvaluateRule(data=test.data,
-                                                                build.rule.object=list.build.rules.OWL.framework.CHD[["propensity_logistic.regression_rule_glm.regression"]],
+                                                                BuildRule.object=list.build.rules.OWL.framework.CHD[["propensity_logistic.regression_rule_glm.regression"]],
                                                                 study.design="observational",
                                                                 additional.weights=test.data$IPW.CC,
                                                                 name.outcome="no_CHD_after_10_yr",
@@ -99,7 +99,7 @@ save(OWL.framework.test.CHD.logistic, file=paste0("Results/OWL_framework_on_test
 
 set.seed(123)
 OWL.framework.test.CHD.lasso <- EvaluateRule(data=test.data,
-                                                                build.rule.object=list.build.rules.OWL.framework.CHD[["propensity_ridge_rule_lasso"]],
+                                                                BuildRule.object=list.build.rules.OWL.framework.CHD[["propensity_ridge_rule_lasso"]],
                                                                 study.design="observational",
                                                                 additional.weights=test.data$IPW.CC,
                                                                 name.outcome="no_CHD_after_10_yr",
@@ -119,7 +119,7 @@ save(OWL.framework.test.CHD.lasso, file=paste0("Results/OWL_framework_on_test_CH
 B.treat.noone <- rep(0, nrow(test.data))
 set.seed(123)
 evaluate.treat.noone.test.CHD <- EvaluateRule(data=test.data,
-                                                  build.rule.object=NULL,
+                                                  BuildRule.object=NULL,
                                                   B=B.treat.noone,
                                                   study.design="observational",
                                                   additional.weights=test.data$IPW.CC,
