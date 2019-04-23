@@ -7,7 +7,7 @@ library(glmnet)
 load("Data/datasets_for_data_example_with_missingness_weights.RData")
 
 # set parameters
-name.outcome <- "no_BREAST_after_10_yr" #"no_CHD_after_10_yr"
+name.outcome <- "no_CHD_after_10_yr" #"no_BREAST_after_10_yr"
 bootstrap.CI.replications <- 100
 
 # develop treatment rules on development dataset and compare performance on independent validation dataset
@@ -25,7 +25,8 @@ model.selection <- CompareRulesOnValidation(development.data=development.data,
                                             names.influencing.rule.development=names.influencing.rule,
                                             desirable.outcome.development=TRUE,
                                             additional.weights.development=development.data$IPW.CC,
-                                            additional.weights.validation=validation.data$IPW.CC)
+                                            additional.weights.validation=validation.data$IPW.CC,
+                                            bootstrap.CI=FALSE,
+                                            bootstrap.CI.replications=bootstrap.CI.replications)
 save(model.selection,
-     file=paste0("Results/", "split.regression.", name.outcome, "_", name.treatment, "_", Sys.Date(), ".RData"))
-
+     file=paste0("Results/", name.outcome, "_", name.treatment, "_", Sys.Date(), ".RData"))
